@@ -19,7 +19,7 @@ def games_index(request):
     return render(request, 'games/index.html', {'games': games})
 
 
-def games_detail(request, cat_id):
+def games_detail(request, game_id):
     game = Game.objects.get(id=game_id)
     return render(request, 'games/detail.html', {'game': game})
 
@@ -27,11 +27,12 @@ def games_detail(request, cat_id):
 class GameCreate(CreateView):
     model = Game
     fields = '__all__'
+    success_url = '/games/'
 
 
 class GameUpdate(UpdateView):
     model = Game
-    fields = ['breed', 'description', 'age']
+    fields = '__all__'
 
 
 class GameDelete(DeleteView):
